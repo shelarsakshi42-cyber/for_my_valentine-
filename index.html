@@ -215,6 +215,376 @@
             color: var(--text);
         }
 
+        /* Games Section */
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .game-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, var(--accent), var(--rose)) 1;
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.12);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .game-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(233, 69, 96, 0.2);
+        }
+
+        .game-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent), var(--rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-description {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Quiz Game */
+        .quiz-question {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(233, 69, 96, 0.08));
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, var(--accent), var(--rose)) 1;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-question::before {
+            content: '💕';
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.05;
+            right: -10px;
+            top: -10px;
+            transform: rotate(-15deg);
+        }
+
+        .quiz-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(233, 69, 96, 0.15);
+        }
+
+        .quiz-question h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 2px solid #ffe6ef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(255, 107, 157, 0.1), rgba(233, 69, 96, 0.1));
+            transition: width 0.3s ease;
+        }
+
+        .quiz-option:hover::before {
+            width: 100%;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--rose);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .quiz-option span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-option.correct {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(56, 142, 60, 0.15));
+            border-color: #4caf50;
+            animation: correctAnswer 0.5s ease;
+        }
+
+        .quiz-option.correct::after {
+            content: '✓';
+            position: absolute;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: #4caf50;
+            animation: checkmark 0.5s ease;
+        }
+
+        @keyframes correctAnswer {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes checkmark {
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            100% { opacity: 1; transform: scale(1) rotate(360deg); }
+        }
+
+        .quiz-option.wrong {
+            background: rgba(244, 67, 54, 0.08);
+            border-color: #ffcdd2;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .quiz-score {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(233, 69, 96, 0.1));
+            border-radius: 10px;
+            border: 2px solid var(--rose);
+        }
+
+        /* Scramble Game */
+        .scramble-game {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scramble-word {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 2rem 0;
+            letter-spacing: 0.3em;
+            text-shadow: 2px 2px 4px rgba(233, 69, 96, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        #scrambleInput {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            border: 3px solid #ffe6ef;
+            border-radius: 12px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 245, 247, 1));
+        }
+
+        #scrambleInput:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.1), 0 5px 20px rgba(233, 69, 96, 0.15);
+            transform: scale(1.02);
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, var(--accent), var(--rose));
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Cormorant Garamond', serif;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .game-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+        }
+
+        .game-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .scramble-feedback {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-height: 30px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .scramble-score {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(233, 69, 96, 0.1));
+            border-radius: 10px;
+            border: 2px solid var(--rose);
+        }
+
+        /* Heart Collector Game */
+        .heart-game {
+            position: relative;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(233, 69, 96, 0.15));
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 1rem;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, var(--rose), var(--accent)) 1;
+            box-shadow: inset 0 0 30px rgba(233, 69, 96, 0.1);
+        }
+
+        .heart-counter {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            z-index: 10;
+            background: white;
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.2);
+            border: 2px solid var(--rose);
+        }
+
+        .falling-heart {
+            position: absolute;
+            font-size: 2.5rem;
+            cursor: pointer;
+            animation: fall 3s linear;
+            transition: all 0.2s ease;
+            filter: drop-shadow(0 5px 10px rgba(233, 69, 96, 0.3));
+        }
+
+        .falling-heart:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 8px 15px rgba(233, 69, 96, 0.5));
+        }
+
+        .falling-heart:active {
+            animation: heartPop 0.3s ease;
+        }
+
+        @keyframes fall {
+            from {
+                top: -50px;
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+            to {
+                top: 100%;
+                opacity: 0.8;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5) rotate(180deg); }
+            100% { transform: scale(0) rotate(360deg); }
+        }
+
         /* Photo Carousel */
         .carousel-container {
             position: relative;
@@ -481,6 +851,43 @@
         </div>
     </section>
 
+    <!-- Interactive Games Section -->
+    <section class="section games-section">
+        <h2 class="section-title">Play With Me ♡</h2>
+        <div class="games-container">
+            <!-- Love Quiz -->
+            <div class="game-box">
+                <h3 class="game-title">Our Love Quiz</h3>
+                <p class="game-description">Answer these questions about us! 💕</p>
+                <div id="quizContainer"></div>
+                <div class="quiz-score">Score: <span id="quizScore">0</span> / 5</div>
+            </div>
+
+            <!-- Love Letter Scramble -->
+            <div class="game-box">
+                <h3 class="game-title">Unscramble My Heart</h3>
+                <p class="game-description">Unscramble these romantic words!</p>
+                <div class="scramble-game">
+                    <div class="scramble-word" id="scrambleWord">LOADING...</div>
+                    <input type="text" id="scrambleInput" placeholder="Type your answer...">
+                    <button class="game-btn" onclick="checkScramble()">Submit</button>
+                    <div class="scramble-feedback" id="scrambleFeedback"></div>
+                    <div class="scramble-score">Solved: <span id="scrambleScore">0</span> / 6</div>
+                </div>
+            </div>
+
+            <!-- Heart Collector -->
+            <div class="game-box">
+                <h3 class="game-title">Catch My Love</h3>
+                <p class="game-description">Click the falling hearts! Get 20 hearts!</p>
+                <div class="heart-game" id="heartGame">
+                    <div class="heart-counter">Hearts: <span id="heartCount">0</span> / 20</div>
+                    <button class="game-btn" onclick="startHeartGame()">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Photo Carousel Section -->
     <section class="section carousel-section">
         <h2 class="section-title">Our Memories</h2>
@@ -517,7 +924,7 @@
         <h2 class="section-title">A Message For You</h2>
         <div class="card-container">
             <p class="card-message">
-                My Dearest Prathamiii Princess, every moment with you feels like a dream I never want to wake up from. 
+                My Dearest Prathamiii Babyyy, every moment with you feels like a dream I never want to wake up from. 
                 You've shown me what it means to be truly loved, to be cherished, to be someone's first thought 
                 in the morning and last wish at night <span class="heart-accent">♡</span>
             </p>
@@ -526,10 +933,10 @@
                 I've found my forever. Thank you for being my person, my best friend, my greatest love.
             </p>
             <p class="card-message">
-                I fall more in love with you with each passing day, and I can't wait to create more 
-                of beautiful memories together. You are my always mine and i am yours .
+                I fall more in love with you with each passing day, and I can't wait to create more
+                beautiful memories together. You are my always and forever.
             </p>
-            <p class="card-signature">Yours Buggu ♡</p>
+            <p class="card-signature">Yours Buggu, with all my heart ♡</p>
         </div>
     </section>
 
@@ -586,6 +993,192 @@
         setInterval(() => {
             showSlide(currentSlide + 1);
         }, 5000);
+
+        // ===== GAMES SECTION =====
+
+        // Quiz Game
+        const quizQuestions = [
+            {
+                question: "What was our first date?",
+                options: ["Coffee shop ☕", "Movie theater 🎬", "Restaurant 🍽️", "Park walk 🌳"],
+                correct: 3
+            },
+            {
+                question: "What's my favorite thing about you?",
+                options: ["Your smile 😊", "Your kindness ❤️", "Your humor 😂", "Everything! 💕"],
+                correct: 3
+            },
+            {
+                question: "What's our special song?",
+                options: ["Perfect by Ed Sheeran", "A Thousand Years", "All of Me", "Make our own! 🎵"],
+                correct: 3
+            },
+            {
+                question: "What do I love doing with you the most?",
+                options: ["Talking for hours 💬", "Going on adventures 🚗", "Cuddling at home 🏠", "All of it! 💞"],
+                correct: 3
+            },
+            {
+                question: "What's my nickname for you?",
+                options: ["Baby 👶", "Love ❤️", "Sweetheart 💕", "Buggu 🐛💕"],
+                correct: 3
+            }
+        ];
+
+        let quizScore = 0;
+        const quizContainer = document.getElementById('quizContainer');
+
+        quizQuestions.forEach((q, qIndex) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'quiz-question';
+            questionDiv.innerHTML = `<h4>Question ${qIndex + 1}: ${q.question}</h4>`;
+            
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'quiz-options';
+            
+            q.options.forEach((option, oIndex) => {
+                const optionBtn = document.createElement('div');
+                optionBtn.className = 'quiz-option';
+                optionBtn.textContent = option;
+                optionBtn.onclick = () => checkQuiz(optionBtn, oIndex, q.correct);
+                optionsDiv.appendChild(optionBtn);
+            });
+            
+            questionDiv.appendChild(optionsDiv);
+            quizContainer.appendChild(questionDiv);
+        });
+
+        function checkQuiz(btn, selected, correct) {
+            const allOptions = btn.parentElement.children;
+            for (let opt of allOptions) {
+                opt.style.pointerEvents = 'none';
+            }
+            
+            if (selected === correct) {
+                btn.classList.add('correct');
+                quizScore++;
+                document.getElementById('quizScore').textContent = quizScore;
+                
+                if (quizScore === quizQuestions.length) {
+                    setTimeout(() => alert('Perfect score, Buggu! 💕 You know our love story so well! You make my heart so happy! 🥰'), 800);
+                }
+            } else {
+                btn.classList.add('wrong');
+                allOptions[correct].classList.add('correct');
+            }
+        }
+
+        // Scramble Game
+        const scrambleWords = [
+            { scrambled: "VLEO", answer: "LOVE" },
+            { scrambled: "ETARH", answer: "HEART" },
+            { scrambled: "SSKI", answer: "KISS" },
+            { scrambled: "EHGUTRS", answer: "TOGETHER" },
+            { scrambled: "REERVOF", answer: "FOREVER" },
+            { scrambled: "NOACRME", answer: "ROMANCE" }
+        ];
+
+        let currentScrambleIndex = 0;
+        let scrambleScore = 0;
+
+        function loadScrambleWord() {
+            if (currentScrambleIndex < scrambleWords.length) {
+                document.getElementById('scrambleWord').textContent = scrambleWords[currentScrambleIndex].scrambled;
+                document.getElementById('scrambleInput').value = '';
+                document.getElementById('scrambleFeedback').textContent = '';
+            } else {
+                document.getElementById('scrambleWord').textContent = '🎉 COMPLETE!';
+                document.getElementById('scrambleInput').style.display = 'none';
+                document.querySelector('.game-btn').style.display = 'none';
+                document.getElementById('scrambleFeedback').textContent = 'You unscrambled all the words! 💕';
+                document.getElementById('scrambleFeedback').style.color = 'var(--accent)';
+            }
+        }
+
+        function checkScramble() {
+            const userAnswer = document.getElementById('scrambleInput').value.toUpperCase().trim();
+            const correctAnswer = scrambleWords[currentScrambleIndex].answer;
+            
+            if (userAnswer === correctAnswer) {
+                scrambleScore++;
+                document.getElementById('scrambleScore').textContent = scrambleScore;
+                document.getElementById('scrambleFeedback').textContent = '✓ Correct! 💕';
+                document.getElementById('scrambleFeedback').style.color = '#4caf50';
+                currentScrambleIndex++;
+                setTimeout(loadScrambleWord, 1000);
+            } else {
+                document.getElementById('scrambleFeedback').textContent = '✗ Try again!';
+                document.getElementById('scrambleFeedback').style.color = '#f44336';
+            }
+        }
+
+        document.getElementById('scrambleInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkScramble();
+            }
+        });
+
+        loadScrambleWord();
+
+        // Heart Collector Game
+        let heartGameActive = false;
+        let heartCount = 0;
+        let heartInterval;
+
+        function startHeartGame() {
+            if (heartGameActive) return;
+            
+            heartGameActive = true;
+            heartCount = 0;
+            document.getElementById('heartCount').textContent = heartCount;
+            document.querySelector('.heart-game button').style.display = 'none';
+            
+            heartInterval = setInterval(createFallingHeart, 800);
+            
+            setTimeout(() => {
+                clearInterval(heartInterval);
+                heartGameActive = false;
+                if (heartCount >= 20) {
+                    alert('You caught all my love, Buggu! 💕 Just like you catch my heart every single day! 🥰');
+                } else {
+                    document.querySelector('.heart-game button').style.display = 'block';
+                }
+            }, 20000);
+        }
+
+        function createFallingHeart() {
+            if (heartCount >= 20) {
+                clearInterval(heartInterval);
+                heartGameActive = false;
+                document.querySelector('.heart-game button').style.display = 'none';
+                return;
+            }
+            
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.textContent = '💕';
+            heart.style.left = Math.random() * 90 + '%';
+            
+            heart.onclick = function() {
+                heartCount++;
+                document.getElementById('heartCount').textContent = heartCount;
+                this.remove();
+                
+                if (heartCount >= 20) {
+                    clearInterval(heartInterval);
+                    heartGameActive = false;
+                    alert('You caught all my love, Buggu! 💕 Just like you catch my heart every single day! 🥰');
+                }
+            };
+            
+            document.getElementById('heartGame').appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentElement) {
+                    heart.remove();
+                }
+            }, 3000);
+        }
     </script>
 </body>
 </html>
